@@ -65,7 +65,6 @@ function recreateParticle(type){
   particle.style.top  = randomNumber(cHeight+400) + 'px';
   particle.style.left = randomNumber(cWidth) + 'px';
   headerContainer.append(particle);
-
   destroyParticle(type, particle, particleCounter);
 }
 
