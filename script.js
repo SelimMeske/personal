@@ -1,9 +1,11 @@
-let headerContainer = document.querySelector('header');
-let cWidth          = headerContainer.clientWidth;
-let cHeight         = headerContainer.clientHeight;
-let particleCounter = 0;
-let particleCounterTwo = 0;
+let headerContainer      = document.querySelector('header');
+let cWidth               = headerContainer.clientWidth;
+let cHeight              = headerContainer.clientHeight;
+let particleCounter      = 0;
+let particleCounterTwo   = 0;
 let particleCounterThree = 0;
+let navLinks             = document.querySelectorAll('.nav-item');
+let select               = document.querySelector('.select');
 
 //Particle types and characteristics
 let particleTypes = {
@@ -45,7 +47,6 @@ while(particleCounterTwo < (cWidth/8)){
   particle.style.left = randomNumber(cWidth) + 'px';
   headerContainer.append(particle);
   destroyParticle('typeOne', particle, particleCounterTwo);
-
 }
 while(particleCounterThree < (cWidth/55)){
   particleCounterThree++;
@@ -55,7 +56,6 @@ while(particleCounterThree < (cWidth/55)){
   particle.style.left = randomNumber(cWidth) + 'px';
   headerContainer.append(particle);
   destroyParticle('typeThree', particle, particleCounterThree);
-
 }
 
 function recreateParticle(type){
@@ -101,5 +101,24 @@ for(let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('mouseleave', (e) => {
     let img = buttons[i].querySelector('img');
     img.style.transform = 'translate(-120%, -50%)';
+  });
+}
+
+document.addEventListener('wheel', () => {
+  let navigation = document.querySelector('.navigation-holder');
+  let spaceFromTop = navigation.getBoundingClientRect().top;
+  if(spaceFromTop <= 0) {
+    navigation.style.position      = 'fixed';
+    navigation.style.top           = '-40px';
+    navigation.style.left          = '0';
+    navigation.style.animationName = 'navFadeIn';
+  }
+});
+
+for(let p = 0; p < navLinks.length; p ++) {
+  navLinks[p].addEventListener('click', () => {
+
+    select.style.left = p * 125 + 'px';
+    console.log(p * 125 + 'px')
   });
 }
