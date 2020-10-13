@@ -28,7 +28,7 @@ let particleTypes = {
     size: 6
   }
 }
-while(particleCounter < 50){
+while(particleCounter < (cWidth/40)){
   particleCounter++;
   let particle        = document.createElement('div');
   particle.classList.add('particle');
@@ -37,7 +37,7 @@ while(particleCounter < 50){
   headerContainer.append(particle);
   destroyParticle('typeTwo', particle, particleCounter);
 }
-while(particleCounterTwo < 200){
+while(particleCounterTwo < (cWidth/8)){
   particleCounterTwo++;
   let particle        = document.createElement('div');
   particle.classList.add('particle');
@@ -47,7 +47,7 @@ while(particleCounterTwo < 200){
   destroyParticle('typeOne', particle, particleCounterTwo);
 
 }
-while(particleCounterThree < 30){
+while(particleCounterThree < (cWidth/55)){
   particleCounterThree++;
   let particle        = document.createElement('div');
   particle.classList.add('particle');
@@ -89,4 +89,17 @@ function destroyParticle(type, particle, counter) {
 
 function randomNumber(multiple){
   return Math.floor(Math.random() * multiple);
+}
+
+let buttons    = document.querySelectorAll('.button');
+
+for(let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('mouseenter', (e) => {
+    let img = buttons[i].querySelector('img');
+    img.style.transform = 'translate(-60%, -50%)';
+  });
+  buttons[i].addEventListener('mouseleave', (e) => {
+    let img = buttons[i].querySelector('img');
+    img.style.transform = 'translate(-120%, -50%)';
+  });
 }

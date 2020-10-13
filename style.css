@@ -25,6 +25,7 @@ header {
 }
 .text-holder h1 {
   font-size: 40px;
+  margin-bottom: 10px;
 }
 .header-wrap {
   width: 100%;
@@ -58,7 +59,8 @@ header {
   top: 50%;
   right: 0%;
   position: absolute;
-  transform: translate(-70%, -50%);
+  transform: translate(-120%, -50%);
+  transition-duration: 0.7s;
 }
 @keyframes parOne {
   0% {background: transparent;}
