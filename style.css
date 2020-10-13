@@ -35,6 +35,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .particle {
   position: absolute;
@@ -72,4 +73,10 @@ header {
   0% {transform: rotate(0deg);}
   50% {transform: scale(1.5) rotate(30deg);}
   100% {transform: rotate(0deg);}
+}
+
+@media screen and (max-width: 480px) {
+  .text-holder h1 {
+    font-size: 20px;
+  }
 }
