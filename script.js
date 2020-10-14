@@ -9,6 +9,10 @@ let select               = document.querySelector('.select');
 let navDummy             = document.querySelector('.nav-hidden-dummy');
 let sun                  = document.querySelector('.sun');
 let sunHolder            = document.querySelector('.sun-holder-inner');
+let sunHolderOuter       = document.querySelector('.sun-holder');
+let imgWrapOuter         = document.querySelector('.img-wrap');
+let branchSections       = document.querySelectorAll('.branch-section');
+
 
 //Particle types and characteristics
 let particleTypes = {
@@ -116,7 +120,6 @@ document.addEventListener('wheel', () => {
     navigation.style.top           = '-40px';
     navigation.style.left          = '0';
     navigation.style.animationName = 'navFadeIn';
-
   }
 });
 
@@ -125,6 +128,32 @@ for(let p = 0; p < navLinks.length; p ++) {
     select.style.left = p * 125 + 'px';
   });
 }
+
+for(let o = 0; o < branchSections.length; o ++) {
+  branchSections[o].addEventListener('mouseenter', (e) => {
+    let line = branchSections[o].querySelector('.line');
+    if(line){
+      line.classList.add('circ-shadow');
+      line.style.borderColor = 'white';
+    }
+  });
+  branchSections[o].addEventListener('mouseleave', (e) => {
+    let line = branchSections[o].querySelector('.line');
+    if(line){
+      line.classList.remove('circ-shadow');
+      line.style.borderColor = '';
+    }
+  });
+
+}
+
+let targetImageY = imgWrapOuter.getBoundingClientRect().top  + window.pageYOffset + imgWrapOuter.clientHeight/2;
+let targetImageX = imgWrapOuter.getBoundingClientRect().left + window.pageXOffset + imgWrapOuter.clientWidth/2;
+
+document.addEventListener('mousemove', (e) => {
+  let mouseX = e.clientX + window.pageXOffset;
+  let mouseY = e.clientY + window.pageYOffset;
+})
 
 setInterval(() => {
   let y = window.pageYOffset  + sun.getBoundingClientRect().top;
