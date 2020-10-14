@@ -8,6 +8,7 @@ body {
   height: 5000px;
   font-family: 'Proza Libre', sans-serif;
   letter-spacing: 2px;
+  position: relative;
 }
 .main {
   width: 100%;
@@ -60,13 +61,18 @@ header {
   margin-top: 40px;
   border-radius: 4px;
 }
+.button:hover {
+  border-color: #F7C548;
+  background: #F7C548;
+  transition-duration: 0.4s;
+}
 .button img {
   width: 15px;
   top: 50%;
   right: 0%;
   position: absolute;
   transform: translate(-120%, -50%);
-  transition-duration: 0.7s;
+  transition-duration: 0.4s;
 }
 .navigation-holder {
   width: 100%;
@@ -78,6 +84,12 @@ header {
   align-items: center;
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
+  z-index: 999;
+}
+.nav-hidden-dummy {
+  height: 40px;
+  width: 100%;
+  display: none;
 }
 .navigation {
   display: flex;
@@ -109,6 +121,87 @@ header {
   transition-duration: 0.7s;
   transition-timing-function: ease-in;
 }
+.section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+}
+.inner-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.me-image {
+  position: relative;
+  margin-top: 80px;
+}
+.sun-holder {
+  width: 100%;
+  height: 100%;
+  animation: sunAni 10s infinite linear;
+  transform-origin: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.sun-holder-inner {
+  position: relative;
+}
+.sun {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(48,48,48);
+  background: radial-gradient(circle, rgba(48,48,48,1) 0%, rgba(33,33,33,1) 50%, rgba(0,0,0,1) 100%);
+  z-index: 1;
+}
+.sun-trace {
+  width: 20px;
+  height: 20px;
+  background: rgb(48,48,48);
+  background: radial-gradient(circle, rgba(48,48,48,1) 0%, rgba(33,33,33,1) 50%, rgba(0,0,0,1) 100%);
+  border-radius: 100%;
+  position: absolute;
+  animation: sunTrace 1.5s forwards;
+  z-index: -1;
+}
+.img-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  border: 2px solid black;
+  overflow: hidden;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+.img-wrap img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: auto;
+}
+@keyframes sunTrace {
+  0% {opacity: 1;}
+  100% {opacity: 0; transform: scale(0.1);}
+}
+@keyframes sunAni {
+  0% {transform: rotateZ(0deg);}
+  100% {transform: rotateZ(360deg);}
+}
 @keyframes navFadeIn {
   0% {top: -40px;}
   100% {top: 0px;}
@@ -124,7 +217,6 @@ header {
   50% {transform: scale(1.5) rotate(30deg);}
   100% {transform: rotate(0deg);}
 }
-
 @media screen and (max-width: 480px) {
   .text-holder h1 {
     font-size: 20px;

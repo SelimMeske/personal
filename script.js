@@ -6,6 +6,9 @@ let particleCounterTwo   = 0;
 let particleCounterThree = 0;
 let navLinks             = document.querySelectorAll('.nav-item');
 let select               = document.querySelector('.select');
+let navDummy             = document.querySelector('.nav-hidden-dummy');
+let sun                  = document.querySelector('.sun');
+let sunHolder            = document.querySelector('.sun-holder-inner');
 
 //Particle types and characteristics
 let particleTypes = {
@@ -39,7 +42,7 @@ while(particleCounter < (cWidth/40)){
   headerContainer.append(particle);
   destroyParticle('typeTwo', particle, particleCounter);
 }
-while(particleCounterTwo < (cWidth/8)){
+while(particleCounterTwo < (cWidth/20)){
   particleCounterTwo++;
   let particle        = document.createElement('div');
   particle.classList.add('particle');
@@ -91,16 +94,16 @@ function randomNumber(multiple){
   return Math.floor(Math.random() * multiple);
 }
 
-let buttons    = document.querySelectorAll('.button');
+let buttons = document.querySelectorAll('.button');
 
 for(let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('mouseenter', (e) => {
     let img = buttons[i].querySelector('img');
-    img.style.transform = 'translate(-60%, -50%)';
+    img.style.transform = 'translate(-120%, -50%) rotateZ(90deg)';
   });
   buttons[i].addEventListener('mouseleave', (e) => {
     let img = buttons[i].querySelector('img');
-    img.style.transform = 'translate(-120%, -50%)';
+    img.style.transform = 'translate(-120%, -50%) rotateZ(0deg)';
   });
 }
 
@@ -108,17 +111,34 @@ document.addEventListener('wheel', () => {
   let navigation = document.querySelector('.navigation-holder');
   let spaceFromTop = navigation.getBoundingClientRect().top;
   if(spaceFromTop <= 0) {
+    navDummy.style.display         = 'block';
     navigation.style.position      = 'fixed';
     navigation.style.top           = '-40px';
     navigation.style.left          = '0';
     navigation.style.animationName = 'navFadeIn';
+
   }
 });
 
 for(let p = 0; p < navLinks.length; p ++) {
   navLinks[p].addEventListener('click', () => {
-
     select.style.left = p * 125 + 'px';
-    console.log(p * 125 + 'px')
   });
+}
+
+setInterval(() => {
+  let y = window.pageYOffset  + sun.getBoundingClientRect().top;
+  let x = window.pageXOffset + sun.getBoundingClientRect().left;
+  makeSunTrace(x, y);
+}, 1000);
+
+function makeSunTrace(x, y){
+  let newSun = document.createElement('div');
+  newSun.classList.add('sun-trace');
+  newSun.style.top  = y +'px';
+  newSun.style.left = x +'px';
+  document.body.append(newSun);
+  setTimeout(() => {
+    newSun.remove();
+  }, 1500);
 }
