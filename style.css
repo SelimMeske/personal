@@ -219,7 +219,7 @@ header {
 }
 .tree {
   height: 100%;
-  width: 800px;
+  width: 768px;
 }
 .tree-dot {
   width: 20px;
@@ -272,17 +272,17 @@ header {
   height: 10px;
   width: 10px;
   border-radius: 100%;
-  border: 1px solid #525252;
+  border: 1px solid #c4c4c4;
   position: absolute;
   z-index: 20;
 }
 .line-left {
   left: 0%;
-  transform: translate(-376%, -50%);
+  transform: translate(-242%, -50%);
 }
 .line-right {
   right: 0%;
-  transform: translate(382%, -50%);
+  transform: translate(248%, -50%);
 }
 .branch:nth-child(odd) .branch-section:nth-child(even){
   border: 1px solid #c4c4c4;
@@ -340,5 +340,58 @@ header {
   .button img {
     width: 10px;
     transform: translate(-90%, -50%);
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .branch {
+    z-index: 20;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .line {
+    top: 0%;
+    left: 50%;
+    transition-duration: 0.5s;
+    background: white;
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    border: 1px solid #c4c4c4;
+    position: absolute;
+    z-index: 20;
+    transform: translate(-50%, -50%) !important;
+  }
+  .line-left {
+    left: 50%;
+  }
+  .line-right {
+    left: 50%;
+  }
+
+  .branch:nth-child(odd) .branch-section:nth-child(odd){
+    display: none;
+    z-index: 20;
+  }
+  .branch:nth-child(even) .branch-section:nth-child(even){
+    display: none;
+    z-index: 20;
+  }
+  .branch:nth-child(odd) .branch-section:nth-child(even){
+    border: 1px solid #c4c4c4;
+    background: white;
+    width: 80% !important;
+  }
+  .branch:nth-child(even) .branch-section:nth-child(odd){
+    background: #f0f0f0;
+    width: 80% !important;
+  }
+  .tree {
+    width: 100%;
+    z-index: 2;
+    padding-top: 40px;
   }
 }
