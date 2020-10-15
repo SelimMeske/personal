@@ -12,7 +12,8 @@ let sunHolder            = document.querySelector('.sun-holder-inner');
 let sunHolderOuter       = document.querySelector('.sun-holder');
 let imgWrapOuter         = document.querySelector('.img-wrap');
 let branchSections       = document.querySelectorAll('.branch-section');
-
+let treeUiAnimationLine  = document.querySelector('.ani-tree-ui');
+let aboutMeHolder        = document.querySelector('.about-me-holder');
 
 //Particle types and characteristics
 let particleTypes = {
@@ -111,7 +112,7 @@ for(let i = 0; i < buttons.length; i++) {
   });
 }
 
-document.addEventListener('wheel', () => {
+document.addEventListener('scroll', () => {
   let navigation = document.querySelector('.navigation-holder');
   let spaceFromTop = navigation.getBoundingClientRect().top;
   if(spaceFromTop <= 0) {
@@ -120,6 +121,20 @@ document.addEventListener('wheel', () => {
     navigation.style.top           = '-40px';
     navigation.style.left          = '0';
     navigation.style.animationName = 'navFadeIn';
+  }
+
+
+  let aboutMeFromTop = aboutMeHolder.getBoundingClientRect().top - 360;
+  aboutMeFromTopPositive = Math.abs(aboutMeFromTop);
+  if(aboutMeFromTop < 0) {
+    console.log(aboutMeHolder.clientHeight)
+    console.log(treeUiAnimationLine.clientHeight)
+
+    if(aboutMeFromTopPositive > aboutMeHolder.clientHeight) {
+      treeUiAnimationLine.style.height = aboutMeHolder.clientHeight + 'px';
+    }else {
+      treeUiAnimationLine.style.height = aboutMeFromTopPositive + 'px';
+    }
   }
 });
 
