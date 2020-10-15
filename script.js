@@ -14,6 +14,8 @@ let imgWrapOuter         = document.querySelector('.img-wrap');
 let branchSections       = document.querySelectorAll('.branch-section');
 let treeUiAnimationLine  = document.querySelector('.ani-tree-ui');
 let aboutMeHolder        = document.querySelector('.about-me-holder');
+let section2             = document.querySelector('.s2');
+let initAnimations       = false;
 
 //Particle types and characteristics
 let particleTypes = {
@@ -123,17 +125,57 @@ document.addEventListener('scroll', () => {
     navigation.style.animationName = 'navFadeIn';
   }
 
-
   let aboutMeFromTop = aboutMeHolder.getBoundingClientRect().top - 360;
+  let sectionTwo     = section2.getBoundingClientRect().top - 370;
   aboutMeFromTopPositive = Math.abs(aboutMeFromTop);
   if(aboutMeFromTop < 0) {
-    console.log(aboutMeHolder.clientHeight)
-    console.log(treeUiAnimationLine.clientHeight)
-
     if(aboutMeFromTopPositive > aboutMeHolder.clientHeight) {
       treeUiAnimationLine.style.height = aboutMeHolder.clientHeight + 'px';
     }else {
       treeUiAnimationLine.style.height = aboutMeFromTopPositive + 'px';
+    }
+  }
+  console.log(sectionTwo)
+  if(sectionTwo < 0) {
+
+    if(!initAnimations){
+      let ballons      = document.querySelectorAll('.sectionTwo svg');
+
+      let htmlSkill    = document.querySelector('.html-skill .progress');
+      let cssSkill     = document.querySelector('.css-skill .progress');
+      let jsSkill      = document.querySelector('.js-skill .progress');
+      let phpSkill     = document.querySelector('.php-skill .progress');
+      let angularSkill = document.querySelector('.angular-skill .progress');
+      let nodeSkill    = document.querySelector('.node-skill .progress');
+      let mysqlSkill   = document.querySelector('.mysql-skill .progress');
+      let wpPlugins    = document.querySelector('.wp-plugins-skill .progress');
+
+      function makeVal(val, elem){
+        let tt      = 3000 / val;
+        let tm      = tt;
+        let toVal   = val;
+        let fromVal = 0;
+        let counter = setInterval(() => {
+          let htmlNumber = elem.parentElement.parentElement.querySelector('.progress-numb');
+          htmlNumber.innerHTML = fromVal +'%';
+          if(fromVal === val){
+            clearInterval(counter);
+          }
+          tm += 5;
+          fromVal++;
+        }, tm);
+        return 1249 + (0.57 * val);
+      }
+
+      htmlSkill.style.strokeDasharray    = makeVal(85, htmlSkill);
+      cssSkill.style.strokeDasharray     = makeVal(85, cssSkill);
+      jsSkill.style.strokeDasharray      = makeVal(70, jsSkill);
+      phpSkill.style.strokeDasharray     = makeVal(45, phpSkill);
+      angularSkill.style.strokeDasharray = makeVal(55, angularSkill);
+      nodeSkill.style.strokeDasharray    = makeVal(25, nodeSkill);
+      mysqlSkill.style.strokeDasharray   = makeVal(50, mysqlSkill);
+      wpPlugins.style.strokeDasharray    = makeVal(50, wpPlugins);
+      initAnimations = true;
     }
   }
 });
