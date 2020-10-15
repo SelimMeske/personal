@@ -473,4 +473,16 @@ svg {
   .skill-title {
     font-size: 12px !important;
   }
+  .branch-section p {
+    font-size: 14px;
+  }
+  .branch-section h4 {
+    font-size: 14px;
+  }
+  .branch-section h3 {
+    font-size: 16px;
+  }
+  .branch-section {
+    padding: 10px 26px;
+  }
 }
